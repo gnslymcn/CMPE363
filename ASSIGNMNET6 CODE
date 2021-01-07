@@ -1,0 +1,17 @@
+import pyodbc 
+conn = pyodbc.connect('Driver={SQL Server};'
+                      'Server=RON\SQLEXPRESS;'
+                      'Database=TestDB;'
+                      'Trusted_Connection=yes;')
+
+cursor = conn.cursor()
+
+cursor.execute('''
+                INSERT INTO TestDB.dbo.People (Name, Age, City)
+                VALUES
+                ('Gökay',20,'London'),
+                ('Süleyman',47,'Boston'),
+                ('Hakan',35,'Paris')  
+                ''')
+conn.commit()
+SELECT * FROM TestDB.dbo.People
